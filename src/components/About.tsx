@@ -1,63 +1,94 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Database, BrainCircuit, LineChart } from "lucide-react";
+import { BrainCircuit, LineChart, Code2, Database } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function About() {
-  const cards = [
+  const features = [
     {
       title: "AI & Machine Learning",
-      description: "Developing custom deep learning models (ResNet, CNNs) and fine-tuning LLMs (LoRA, Falcon) for real-world applications.",
-      icon: <BrainCircuit className="text-brand-500" size={32} />,
+      description: "Custom deep learning models (ResNet) and fine-tuning LLMs (LoRA, Falcon).",
+      icon: <BrainCircuit size={24} />,
+      color: "text-brand-400",
+      bg: "bg-brand-400/10"
     },
     {
       title: "Data Analytics",
-      description: "Processing large datasets, conducting ROI analysis, and building interactive Power BI dashboards for executive-level insights.",
-      icon: <LineChart className="text-brand-500" size={32} />,
+      description: "Processing scale datasets, ROI analysis, and building interactive Power BI dashboards.",
+      icon: <LineChart size={24} />,
+      color: "text-brand-500",
+      bg: "bg-brand-500/10"
     },
     {
       title: "Computer Vision",
-      description: "Implementing facial recognition and plant disease detection systems using OpenCV and TensorFlow.",
-      icon: <Code2 className="text-brand-500" size={32} />,
+      description: "Facial recognition and plant disease detection using OpenCV and TensorFlow.",
+      icon: <Code2 size={24} />,
+      color: "text-brand-600",
+      bg: "bg-brand-600/10"
     },
     {
-      title: "Full-Stack Development",
-      description: "Building production-ready systems bridging complex AI/Data backends (Python, SQL) with modern frontends.",
-      icon: <Database className="text-brand-500" size={32} />,
+      title: "Full-Stack Integrations",
+      description: "Bridging complex AI/Data backends with modern, interactive frontends.",
+      icon: <Database size={24} />,
+      color: "text-brand-700",
+      bg: "bg-brand-700/10"
     },
   ];
 
   return (
-    <section id="about" className="py-24 relative">
+    <section id="about" className="py-32 relative z-10">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="max-w-3xl mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground tracking-tight">
-            Engineering <span className="text-brand-500">Intelligence.</span>
-          </h2>
-          <p className="text-zinc-400 text-lg leading-relaxed">
-            I am currently pursuing my B.Tech in Computer Science and Engineering at Lovely Professional University.
-            My passion lies in transforming raw data into actionable insights and building AI systems that solve practical problems.
-            From optimizing ad spend pipelines to training custom neural networks, I approach engineering with a data-driven mindset.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {cards.map((card, idx) => (
+        <div className="flex flex-col lg:flex-row gap-20">
+          
+          <div className="lg:w-1/2">
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-8 rounded-2xl bg-dark-surface border border-dark-border hover:border-brand-500/50 transition-colors group"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="sticky top-32"
             >
-              <div className="mb-6 bg-dark-bg w-16 h-16 rounded-xl flex items-center justify-center border border-dark-border group-hover:scale-110 transition-transform">
-                {card.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">{card.title}</h3>
-              <p className="text-zinc-400 leading-relaxed">{card.description}</p>
+              <h2 className="text-sm font-bold tracking-widest text-brand-500 uppercase mb-4">
+                The Architecture
+              </h2>
+              <h3 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6 leading-tight">
+                Bridging the gap between <span className="text-gradient-subtle italic">raw data</span> and <span className="text-gradient">human interaction.</span>
+              </h3>
+              <p className="text-zinc-400 text-lg leading-relaxed mb-8">
+                Currently pursuing my B.Tech in Computer Science at Lovely Professional University. My passion lies in transforming raw data into actionable insights and building AI systems that solve practical problems.
+              </p>
+              <p className="text-zinc-400 text-lg leading-relaxed">
+                From optimizing ad spend pipelines via Data Analytics to training custom neural networks from scratch, I approach engineering with a data-driven mindset and a creative touch.
+              </p>
             </motion.div>
-          ))}
+          </div>
+
+          <div className="lg:w-1/2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {features.map((feature, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  className="glass-panel p-8 rounded-3xl flex flex-col gap-6 group hover:-translate-y-2 transition-transform duration-300"
+                >
+                  <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center transition-colors", feature.bg, feature.color)}>
+                    {feature.icon}
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-white mb-2">{feature.title}</h4>
+                    <p className="text-sm text-zinc-400 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          
         </div>
       </div>
     </section>

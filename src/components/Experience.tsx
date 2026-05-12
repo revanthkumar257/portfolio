@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Briefcase, GraduationCap, Award } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function Experience() {
   const experiences = [
@@ -9,12 +10,12 @@ export default function Experience() {
       role: "Data Scientist Intern",
       company: "Futurense Technologies",
       date: "June 2025 - August 2025",
-      icon: <Briefcase size={20} />,
+      icon: <Briefcase size={20} className="text-brand-500" />,
       points: [
         "Processed and analyzed 10,000+ multi-source student and marketing records, enabling data-driven strategic decisions.",
-        "Performed ROI and conversion analysis across Facebook, Google, and LinkedIn campaigns, influencing budget reallocation.",
-        "Segmented leads using demographic and behavioral attributes, uncovering that 45% of high-quality leads were B.Tech students.",
-        "Designed a data-driven budget optimization model to dynamically reallocate ad spend based on historical conversion performance.",
+        "Performed ROI and conversion analysis across Facebook, Google, and LinkedIn campaigns, optimizing budget reallocation.",
+        "Segmented leads using demographic and behavioral attributes, improving high-quality lead precision by uncovering that 45% were B.Tech students.",
+        "Designed a data-driven budget optimization model dynamically reallocating ad spend based on historical performance.",
         "Built interactive Power BI dashboards for platform performance, lead quality, and counselor productivity."
       ]
     }
@@ -26,111 +27,106 @@ export default function Experience() {
       institution: "Lovely Professional University, Punjab",
       date: "2022 - 2026",
       score: "CGPA: 7.87",
-      icon: <GraduationCap size={20} />
+      icon: <GraduationCap size={20} className="text-brand-400" />
     },
     {
       degree: "Intermediate",
       institution: "Tirumala Junior College, Visakhapatnam",
       date: "2020 - 2022",
-      score: "Percentage: 94.70%",
-      icon: <GraduationCap size={20} />
+      score: "94.70%",
+      icon: <GraduationCap size={20} className="text-brand-400" />
     }
   ];
 
-  const certifications = [
-    "Infosys Springboard: Principles of Generative AI (May 2025)",
-    "Microsoft Certified: Azure Data Scientist Associate (Dec 2024)",
-    "Microsoft Certified: Azure Data Fundamentals (Oct 2024)"
-  ];
-
   return (
-    <section id="experience" className="py-24 relative bg-dark-surface/30">
+    <section id="experience" className="py-32 relative z-10">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+        <div className="text-center mb-20">
+          <h2 className="text-sm font-bold tracking-widest text-brand-500 uppercase mb-4">
+            The Journey
+          </h2>
+          <h3 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+            Experience & <span className="text-gradient">Education.</span>
+          </h3>
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-16 max-w-6xl mx-auto">
           
           {/* Experience Timeline */}
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-10 text-foreground tracking-tight flex items-center gap-3">
-              <Briefcase className="text-brand-500" /> Experience
-            </h2>
-            <div className="relative border-l border-dark-border ml-3 pl-8 pb-4">
+          <div className="lg:w-1/2">
+            <h4 className="text-2xl font-bold mb-10 flex items-center gap-3 text-white">
+              <span className="w-10 h-10 rounded-xl glass flex items-center justify-center">
+                <Briefcase size={20} className="text-brand-500" />
+              </span>
+              Work Experience
+            </h4>
+            
+            <div className="relative border-l border-white/10 ml-5 pl-10 pb-4 space-y-12">
+              {/* Glowing Timeline Line */}
+              <div className="absolute top-0 left-[-1px] w-[2px] h-full bg-gradient-to-b from-brand-500 via-brand-600 to-transparent" />
+
               {experiences.map((exp, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="mb-12 relative"
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6 }}
+                  className="relative group"
                 >
-                  <div className="absolute -left-[41px] top-1 h-5 w-5 rounded-full border-4 border-dark-surface bg-brand-500" />
-                  <span className="text-brand-500 text-sm font-bold tracking-wider uppercase mb-2 block">{exp.date}</span>
-                  <h3 className="text-2xl font-bold text-white mb-1">{exp.role}</h3>
-                  <h4 className="text-lg text-zinc-400 mb-4">{exp.company}</h4>
-                  <ul className="space-y-3">
-                    {exp.points.map((point, pIdx) => (
-                      <li key={pIdx} className="text-zinc-400 leading-relaxed flex items-start">
-                        <span className="text-brand-500 mr-2 mt-1.5 leading-none">•</span>
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Timeline Dot */}
+                  <div className="absolute -left-[45px] top-1.5 h-3 w-3 rounded-full bg-white shadow-[0_0_15px_rgba(14,165,233,0.8)] group-hover:scale-150 transition-transform" />
+                  
+                  <div className="glass-panel p-8 rounded-3xl group-hover:-translate-y-1 transition-transform duration-300">
+                    <span className="text-brand-400 text-xs font-bold tracking-widest uppercase mb-3 block">{exp.date}</span>
+                    <h3 className="text-2xl font-bold text-white mb-2">{exp.role}</h3>
+                    <h4 className="text-lg text-zinc-400 mb-6 font-medium">{exp.company}</h4>
+                    <ul className="space-y-3">
+                      {exp.points.map((point, pIdx) => (
+                        <li key={pIdx} className="text-sm text-zinc-400 leading-relaxed flex items-start">
+                          <span className="text-brand-600 mr-3 mt-1.5 leading-none">•</span>
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Education & Certifications */}
-          <div className="space-y-16">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-10 text-foreground tracking-tight flex items-center gap-3">
-                <GraduationCap className="text-brand-500" /> Education
-              </h2>
-              <div className="space-y-8">
-                {education.map((edu, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="bg-dark-bg border border-dark-border p-6 rounded-2xl relative overflow-hidden group hover:border-brand-500/50 transition-colors"
-                  >
-                    <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                      <GraduationCap size={100} className="text-brand-500" />
-                    </div>
-                    <span className="text-brand-500 text-sm font-bold tracking-wider uppercase mb-1 block">{edu.date}</span>
-                    <h3 className="text-xl font-bold text-white mb-1">{edu.degree}</h3>
-                    <h4 className="text-zinc-400 mb-3">{edu.institution}</h4>
-                    <span className="inline-block bg-dark-surface text-zinc-300 px-3 py-1 rounded-full text-sm border border-dark-border font-medium">
-                      {edu.score}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+          {/* Education */}
+          <div className="lg:w-1/2">
+            <h4 className="text-2xl font-bold mb-10 flex items-center gap-3 text-white">
+              <span className="w-10 h-10 rounded-xl glass flex items-center justify-center">
+                <GraduationCap size={20} className="text-brand-400" />
+              </span>
+              Education
+            </h4>
 
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-foreground tracking-tight flex items-center gap-3">
-                <Award className="text-brand-500" /> Certifications
-              </h2>
-              <div className="space-y-4">
-                {certifications.map((cert, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="flex items-center gap-4 bg-dark-bg border border-dark-border p-4 rounded-xl"
-                  >
-                    <div className="bg-dark-surface p-2 rounded-lg border border-dark-border text-brand-500">
-                      <Award size={20} />
-                    </div>
-                    <p className="text-zinc-300 font-medium">{cert}</p>
-                  </motion.div>
-                ))}
-              </div>
+            <div className="space-y-6">
+              {education.map((edu, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  className="glass-panel p-8 rounded-3xl relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300"
+                >
+                  <div className="absolute right-0 bottom-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <GraduationCap size={120} className="text-brand-400" />
+                  </div>
+                  <div className="relative z-10">
+                    <span className="text-brand-400 text-xs font-bold tracking-widest uppercase mb-3 block">{edu.date}</span>
+                    <h3 className="text-xl font-bold text-white mb-2">{edu.degree}</h3>
+                    <h4 className="text-zinc-400 mb-6 text-sm">{edu.institution}</h4>
+                    <span className="inline-block bg-white/5 text-white px-4 py-2 rounded-full text-xs font-medium border border-white/10 backdrop-blur-md">
+                      Score: {edu.score}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
 

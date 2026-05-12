@@ -1,10 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
-import { ExternalLink, Database, BrainCircuit, Activity, LineChart, Code } from "lucide-react";
+import { Database, BrainCircuit, Activity, LineChart, Code } from "lucide-react";
 import { cn } from "@/lib/utils";
+import AnimatedHeader from "./AnimatedHeader";
 
 const projects = [
   {
@@ -66,17 +67,19 @@ export default function Projects() {
             <h2 className="text-sm font-bold tracking-widest text-brand-500 uppercase mb-4">
               Featured Work
             </h2>
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-6 leading-tight">
-              Systems in <span className="text-gradient">Production.</span>
-            </h3>
-            <p className="text-zinc-400 text-lg mb-8">
+            <AnimatedHeader 
+              text="Systems in Production."
+              tag="h3"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-6 leading-tight"
+            />
+            <p className="text-zinc-600 dark:text-zinc-400 text-lg mb-8">
               A curated selection of my most technically challenging projects, ranging from custom neural networks to dynamic analytics dashboards.
             </p>
             <a
               href="https://github.com/revanthkumar257"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-dark-bg/5 hover:bg-dark-bg/10 border border-dark-border text-foreground font-medium transition-all"
             >
               <FaGithub size={18} /> View All on GitHub
             </a>
@@ -97,31 +100,31 @@ export default function Projects() {
                 )}
               >
                 {/* Background Gradient */}
-                <div className={cn("absolute inset-0 bg-gradient-to-br opacity-50", project.gradient)} />
+                <div className={cn("absolute inset-0 bg-gradient-to-br opacity-50 dark:opacity-50 opacity-20", project.gradient)} />
                 
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="flex justify-between items-start mb-8">
                     <div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2 block">
+                      <span className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2 block">
                         {project.category}
                       </span>
-                      <h4 className="text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-500 transition-all duration-300">
+                      <h4 className="text-3xl font-bold text-foreground transition-all duration-300">
                         {project.title}
                       </h4>
                     </div>
-                    <div className="bg-dark-bg/50 backdrop-blur-md border border-white/10 text-xs font-bold px-4 py-2 rounded-full text-white">
+                    <div className="bg-white/50 dark:bg-dark-bg/50 backdrop-blur-md border border-dark-border text-xs font-bold px-4 py-2 rounded-full text-foreground shadow-sm">
                       {project.metric}
                     </div>
                   </div>
 
-                  <p className="text-zinc-300 text-lg leading-relaxed mb-10 max-w-xl">
+                  <p className="text-zinc-700 dark:text-zinc-300 text-lg leading-relaxed mb-10 max-w-xl">
                     {project.description}
                   </p>
 
                   <div className="mt-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((t, tIdx) => (
-                        <span key={tIdx} className="text-xs font-medium text-zinc-300 bg-white/5 px-3 py-1.5 rounded-lg border border-white/10 backdrop-blur-sm flex items-center gap-1.5">
+                        <span key={tIdx} className="text-xs font-medium text-zinc-600 dark:text-zinc-300 bg-white/50 dark:bg-white/5 px-3 py-1.5 rounded-lg border border-dark-border backdrop-blur-sm flex items-center gap-1.5 shadow-sm">
                           <Code size={12} className="text-brand-500" /> {t}
                         </span>
                       ))}
@@ -130,7 +133,7 @@ export default function Projects() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-full bg-white text-dark-bg flex items-center justify-center hover:scale-110 transition-transform flex-shrink-0"
+                      className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center hover:scale-110 transition-transform flex-shrink-0 shadow-xl"
                     >
                       <FaGithub size={24} />
                     </a>

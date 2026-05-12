@@ -4,16 +4,14 @@ import { motion } from "framer-motion";
 import { ArrowRight, Download, Terminal, Database, Code2 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import AnimatedHeader from "./AnimatedHeader";
 
 export default function Hero() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.2, delayChildren: 0.1 },
     },
   };
 
@@ -25,55 +23,65 @@ export default function Hero() {
   return (
     <section id="hero" className="min-h-screen flex flex-col justify-center relative overflow-hidden pt-20">
       
-      {/* Floating Elements */}
+      {/* Throwable Floating Elements */}
       <motion.div 
         animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }} 
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 left-[10%] hidden md:flex items-center justify-center w-16 h-16 glass rounded-2xl text-brand-400 opacity-50"
+        drag
+        dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
+        dragElastic={0.5}
+        whileDrag={{ scale: 1.2, cursor: "grabbing" }}
+        className="absolute top-1/4 left-[10%] hidden md:flex items-center justify-center w-16 h-16 glass rounded-2xl text-brand-400 opacity-70 cursor-grab z-20 shadow-lg"
       >
-        <Terminal size={32} />
+        <Terminal size={32} className="pointer-events-none" />
       </motion.div>
       <motion.div 
         animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }} 
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-1/3 right-[10%] hidden md:flex items-center justify-center w-20 h-20 glass rounded-full text-brand-600 opacity-50"
+        drag
+        dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
+        dragElastic={0.5}
+        whileDrag={{ scale: 1.2, cursor: "grabbing" }}
+        className="absolute bottom-1/3 right-[10%] hidden md:flex items-center justify-center w-20 h-20 glass rounded-full text-brand-600 opacity-70 cursor-grab z-20 shadow-lg"
       >
-        <Database size={40} />
+        <Database size={40} className="pointer-events-none" />
       </motion.div>
       <motion.div 
         animate={{ y: [0, -15, 0], rotate: [0, 10, 0] }} 
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute top-1/3 right-[20%] hidden lg:flex items-center justify-center w-12 h-12 glass rounded-xl text-brand-500 opacity-30"
+        drag
+        dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
+        dragElastic={0.5}
+        whileDrag={{ scale: 1.2, cursor: "grabbing" }}
+        className="absolute top-1/3 right-[20%] hidden lg:flex items-center justify-center w-12 h-12 glass rounded-xl text-brand-500 opacity-50 cursor-grab z-20 shadow-lg"
       >
-        <Code2 size={24} />
+        <Code2 size={24} className="pointer-events-none" />
       </motion.div>
 
-      <div className="container mx-auto px-6 md:px-12 flex flex-col items-center text-center relative z-10">
+      <div className="container mx-auto px-6 md:px-12 flex flex-col items-center text-center relative z-10 pointer-events-none">
         
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-4xl mx-auto flex flex-col items-center"
+          className="max-w-4xl mx-auto flex flex-col items-center pointer-events-auto"
         >
-          <motion.div variants={itemVariants} className="mb-6 flex items-center gap-3 glass px-4 py-2 rounded-full border border-white/10">
+          <motion.div variants={itemVariants} className="mb-6 flex items-center gap-3 glass px-4 py-2 rounded-full border border-dark-border">
             <span className="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
-            <span className="text-xs font-medium tracking-widest uppercase text-zinc-300">Available for new opportunities</span>
+            <span className="text-xs font-medium tracking-widest uppercase text-zinc-500 dark:text-zinc-300">Available for new opportunities</span>
           </motion.div>
 
-          <motion.h1 
-            variants={itemVariants}
-            className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 leading-[1.1]"
-          >
-            Engineering <br className="hidden md:block" />
-            <span className="text-gradient">Intelligence.</span>
-          </motion.h1>
+          <AnimatedHeader 
+            text="Engineering Intelligence." 
+            tag="h1" 
+            className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 leading-[1.1] text-gradient justify-center text-center w-full"
+          />
 
           <motion.p 
             variants={itemVariants}
-            className="text-lg md:text-2xl text-zinc-400 font-light max-w-2xl mx-auto mb-12 leading-relaxed"
+            className="text-lg md:text-2xl text-zinc-600 dark:text-zinc-400 font-light max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            I am <strong className="text-white font-medium">Revanth Kumar</strong>, an AI/Data-focused engineer architecting intelligent systems and analytics-driven products.
+            I am <strong className="text-foreground font-medium">Revanth Kumar</strong>, an AI/Data-focused engineer architecting intelligent systems and analytics-driven products.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-5">
@@ -94,10 +102,10 @@ export default function Hero() {
               rel="noopener noreferrer"
               className={cn(
                 "group inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-medium transition-all duration-300",
-                "glass rounded-full hover:bg-white/10"
+                "glass rounded-full hover:bg-dark-border/20 text-foreground"
               )}
             >
-              <Download size={18} className="text-zinc-400 group-hover:text-white transition-colors" />
+              <Download size={18} className="text-zinc-500 dark:text-zinc-400 group-hover:text-foreground transition-colors" />
               <span>Download Resume</span>
             </a>
           </motion.div>
@@ -111,8 +119,8 @@ export default function Hero() {
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-medium">Scroll</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-zinc-500 to-transparent"></div>
+        <span className="text-[10px] uppercase tracking-widest text-zinc-400 dark:text-zinc-500 font-medium">Scroll</span>
+        <div className="w-[1px] h-12 bg-gradient-to-b from-zinc-400 dark:from-zinc-500 to-transparent"></div>
       </motion.div>
     </section>
   );

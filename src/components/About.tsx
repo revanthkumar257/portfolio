@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { BrainCircuit, LineChart, Code2, Database } from "lucide-react";
 import { cn } from "@/lib/utils";
+import AnimatedHeader from "./AnimatedHeader";
 
 export default function About() {
   const features = [
@@ -52,13 +53,15 @@ export default function About() {
               <h2 className="text-sm font-bold tracking-widest text-brand-500 uppercase mb-4">
                 The Architecture
               </h2>
-              <h3 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6 leading-tight">
-                Bridging the gap between <span className="text-gradient-subtle italic">raw data</span> and <span className="text-gradient">human interaction.</span>
-              </h3>
-              <p className="text-zinc-400 text-lg leading-relaxed mb-8">
+              <AnimatedHeader 
+                text="Bridging the gap between raw data and human interaction."
+                tag="h3"
+                className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6 leading-tight"
+              />
+              <p className="text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed mb-8">
                 Currently pursuing my B.Tech in Computer Science at Lovely Professional University. My passion lies in transforming raw data into actionable insights and building AI systems that solve practical problems.
               </p>
-              <p className="text-zinc-400 text-lg leading-relaxed">
+              <p className="text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed">
                 From optimizing ad spend pipelines via Data Analytics to training custom neural networks from scratch, I approach engineering with a data-driven mindset and a creative touch.
               </p>
             </motion.div>
@@ -79,8 +82,8 @@ export default function About() {
                     {feature.icon}
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-white mb-2">{feature.title}</h4>
-                    <p className="text-sm text-zinc-400 leading-relaxed">
+                    <h4 className="text-xl font-bold text-foreground mb-2">{feature.title}</h4>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
                       {feature.description}
                     </p>
                   </div>

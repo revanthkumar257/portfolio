@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Youtube } from "lucide-react";
+import { FaGithub, FaLinkedin, FaYoutube, FaEnvelope } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Footer() {
@@ -22,7 +22,7 @@ export default function Footer() {
             className="text-zinc-400 hover:text-white transition-colors p-2 hover:bg-dark-surface rounded-full"
             aria-label="GitHub"
           >
-            <Github size={20} />
+            <FaGithub size={20} />
           </a>
           <a
             href="https://linkedin.com/in/revanth-kumar-golagani"
@@ -31,7 +31,7 @@ export default function Footer() {
             className="text-zinc-400 hover:text-brand-500 transition-colors p-2 hover:bg-dark-surface rounded-full"
             aria-label="LinkedIn"
           >
-            <Linkedin size={20} />
+            <FaLinkedin size={20} />
           </a>
           <a
             href="https://www.youtube.com/@Revanthkumar-iw2ps"
@@ -40,14 +40,14 @@ export default function Footer() {
             className="text-zinc-400 hover:text-red-500 transition-colors p-2 hover:bg-dark-surface rounded-full"
             aria-label="YouTube"
           >
-            <Youtube size={20} />
+            <FaYoutube size={20} />
           </a>
           <a
             href="mailto:revanthyadavg05@gmail.com"
             className="text-zinc-400 hover:text-white transition-colors p-2 hover:bg-dark-surface rounded-full"
             aria-label="Email"
           >
-            <Mail size={20} />
+            <FaEnvelope size={20} />
           </a>
         </div>
       </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 
 export default function Projects() {
   const projects = [
@@ -65,7 +66,7 @@ export default function Projects() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors border-b border-zinc-600 hover:border-white pb-1"
           >
-            View all on GitHub <Github size={16} />
+            View all on GitHub <FaGithub size={16} />
           </a>
         </div>
 
@@ -87,7 +88,7 @@ export default function Projects() {
                   <div className="flex gap-4">
                     {project.github && (
                       <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">
-                        <Github size={22} />
+                        <FaGithub size={22} />
                       </a>
                     )}
                     {project.demo && (

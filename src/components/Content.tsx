@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Youtube, ExternalLink } from "lucide-react";
+import { FaYoutube } from "react-icons/fa";
+import { ExternalLink } from "lucide-react";
 
 export default function Content() {
   return (
@@ -20,7 +21,7 @@ export default function Content() {
 
             <div className="relative z-10 flex flex-col items-center">
               <div className="w-20 h-20 bg-dark-bg border border-dark-border rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(220,38,38,0.2)]">
-                <Youtube size={40} className="text-red-600" />
+                <FaYoutube size={40} className="text-red-600" />
               </div>
               
               <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground tracking-tight">
